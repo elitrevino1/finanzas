@@ -11,6 +11,11 @@ import Spinner from "react-bootstrap/spinner";
 import Button from "react-bootstrap/button";
 import Form from "react-bootstrap/form";
 import Input from "../components/Input";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Card from "react-bootstrap/Card";
+import Accordion from "react-bootstrap/Accordion";
 
 const idUsuario = 4;
 const fechaInicio = "2019-12-01";
@@ -26,6 +31,55 @@ class Movimientos extends Component {
 
   componentDidMount() {
     this.props.getMovimientos(idUsuario, fechaInicio, fechaFin);
+  }
+
+  renderBalance() {
+    return (
+      <Jumbotron fluid>
+        <Container>
+          <Row className="align-items-center">
+            <h1>Balance del mes</h1>
+          </Row>
+          <Row className="align-items-center">
+            <p className="text-info">$1024.53</p>
+          </Row>
+          <Row>
+            <Col xs={6}>
+              <Row className="align-items-center">
+                <p className="text-success">Ingresos</p>
+              </Row>
+              <Row className="align-items-center">
+                <p className="text-success">$2345.00</p>
+              </Row>
+            </Col>
+            <Col xs={6}>
+              <Row className="align-items-center">
+                <p className="text-danger">Gastos</p>
+              </Row>
+              <Row className="align-items-center">
+                <p className="text-danger">-$1320.47</p>
+              </Row>
+            </Col>
+          </Row>
+          <Accordion>
+            <Card>
+              <Card.Header>
+                <Accordion.Toggle as={Button} variant="link">
+                  <p className="align-items-center">Analíticas</p>
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse>
+                <Card.Body>
+                  <p className="align-items-center">
+                    aquí va la gráfica que no supe poner :(
+                  </p>
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
+        </Container>
+      </Jumbotron>
+    );
   }
 
   renderMovimientos() {
@@ -88,7 +142,7 @@ class Movimientos extends Component {
             }
           />
           <Button onClick={() => console.log(this.props.movimiento)}>
-              Subir
+            Subir
           </Button>
         </Form>
       );
